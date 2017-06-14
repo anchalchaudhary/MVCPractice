@@ -1,7 +1,20 @@
 ﻿
 @{
     ViewBag.Title = "SecondPage";
+    Layout = null;
 }
 
 <h2>SecondPage</h2>
 
+<div class="container">
+    <p>
+        ViewBag : @ViewBag.NameVB
+    </p>
+    <p>
+        ViewData : @ViewData["NameVD"]
+    </p>
+    <p>
+        TempData : @TempData["NameTD"]
+    </p>
+    <a href="/Test/Index">Index Page</a>
+</div>

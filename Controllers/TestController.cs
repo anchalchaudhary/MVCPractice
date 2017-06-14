@@ -29,11 +29,17 @@ namespace MVCTutorial.Controllers
 
             ViewBag.NamesList = namesList;
             ViewData["NamesList"] = namesList;
+
+            ViewBag.NameVB = "Anchal";
+            ViewData["NameVD"] = "Salvee";
+            TempData["NameTD"] = "Ayushi";
+
+            TempData.Keep();
             
             return View(namesList);
         }
 
-        public ActionResult  SecondPage()
+        public ActionResult SecondPage()
         {
             return View();
         }
