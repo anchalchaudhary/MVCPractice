@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVCTutorial.Models.Names>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+@*<h2>Index</h2>
+    @ViewBag.Name*@
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<table class="table table-hover" style="width:60%">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Branch</th>
+    </tr>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Branch</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<table class="table table-hover" style="width:60%">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Branch</th>
+    </tr>
+    <tbody>
+        @foreach (var item in ViewData["NamesList"] as List<MVCTutorial.Models.Names>)
+            {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Name</td>
+                <td>@item.Branch</td>
+            </tr>
+        }
+    </tbody>
+</table>
