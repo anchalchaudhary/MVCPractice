@@ -1,13 +1,23 @@
-﻿@model IEnumerable<MVCTutorial.Models.Names>
+﻿@*@model IEnumerable<MVCTutorial.Models.Names>*@
+@model MVCTutorial.Models.ViewNames
 @{
     ViewBag.Title = "Index";
     Layout = null;
 }
 
-@*<h2>Index</h2>
-    @ViewBag.Name*@
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
-<table class="table table-hover" style="width:60%">
+<div class="container">
+    @if(Model != null)
+    {
+        <p>Student</p>
+        <ul class="list-group">
+            <li class="list-group-item">ID: <b>@Model.ID</b></li>
+            <li class="list-group-item">Name: <b>@Model.Name</b></li>
+            <li class="list-group-item">Branch: <b>@Model.Branch</b></li>
+        </ul>
+    }
+</div>
+@*<table class="table table-hover" style="width:60%">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -55,4 +65,4 @@
         TempData : @TempData["NameTD"]
     </p>
     <a href="/Test/SecondPage">Second Page</a>
-</div>
+</div>*@
