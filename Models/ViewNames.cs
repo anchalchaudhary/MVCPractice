@@ -9,6 +9,7 @@ namespace MVCTutorial.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Branch { get; set; }
+        public Nullable<int> Branch { get; set; }
+        public string BranchName { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<MVCTutorial.Models.Names>*@
-@model MVCTutorial.Models.ViewNames
+﻿@model IEnumerable<MVCTutorial.Models.ViewNames>
 @{
     ViewBag.Title = "Index";
     Layout = null;
@@ -7,62 +6,24 @@
 
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <div class="container">
-    @if(Model != null)
+    @if (Model != null)
     {
-        <p>Student</p>
-        <ul class="list-group">
-            <li class="list-group-item">ID: <b>@Model.ID</b></li>
-            <li class="list-group-item">Name: <b>@Model.Name</b></li>
-            <li class="list-group-item">Branch: <b>@Model.Branch</b></li>
-        </ul>
+        <table class="table table-condensed">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Branch</th>
+            </tr>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.Name</td>
+                        <td>@item.BranchName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 </div>
-@*<table class="table table-hover" style="width:60%">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Branch</th>
-    </tr>
-    <tbody>
-        @if (Model != null)
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.ID</td>
-                    <td>@item.Name</td>
-                    <td>@item.Branch</td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
-<table class="table table-hover" style="width:60%">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Branch</th>
-    </tr>
-    <tbody>
-        @foreach (var item in ViewData["NamesList"] as List<MVCTutorial.Models.Names>)
-            {
-            <tr>
-                <td>@item.ID</td>
-                <td>@item.Name</td>
-                <td>@item.Branch</td>
-            </tr>
-        }
-    </tbody>
-</table>
-<div class="container">
-    <p>
-        ViewBag : @ViewBag.NameVB
-    </p>
-    <p>
-        ViewData : @ViewData["NameVD"]
-    </p>
-    <p>
-        TempData : @TempData["NameTD"]
-    </p>
-    <a href="/Test/SecondPage">Second Page</a>
-</div>*@

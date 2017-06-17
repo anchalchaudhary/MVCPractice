@@ -12,12 +12,18 @@ namespace MVCTutorial.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblName
+    public partial class tblBranch
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> Branch { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblBranch()
+        {
+            this.tblNames = new HashSet<tblName>();
+        }
     
-        public virtual tblBranch tblBranch { get; set; }
+        public int ID { get; set; }
+        public string Branch { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblName> tblNames { get; set; }
     }
 }
