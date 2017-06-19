@@ -5,25 +5,18 @@
 }
 
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
-<div class="container">
+<div class="container" style="margin-top:5%; width:30%">
     @if (Model != null)
     {
-        <table class="table table-condensed">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Branch</th>
-            </tr>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.ID</td>
-                        <td>@item.Name</td>
-                        <td>@item.BranchName</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <ul class="list-group">
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item">
+                    @*<a class="btn btn-block btn-success" href="/Test/StudentDetail?ID=@item.ID">@item.Name</a>*@
+
+                    @Html.ActionLink(item.Name, "StudentDetail", new { ID=item.ID },new { @class= "btn btn-block btn-primary" })
+                </li>
+            }
+        </ul>
     }
 </div>

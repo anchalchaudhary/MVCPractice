@@ -1,0 +1,25 @@
+﻿@model MVCTutorial.Models.ViewNames
+@{
+    ViewBag.Title = "StudentDetail";
+    Layout = null;
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<h2>Student Detail</h2>
+<div class="container">
+    <table class="table table-condensed">
+        <tr>
+            <td>ID</td>
+            <td>@Model.ID</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td>Branch</td>
+            <td>@Model.BranchName</td>
+        </tr>
+    </table>
+</div>
+
