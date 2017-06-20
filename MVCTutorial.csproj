@@ -311,6 +311,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\SecondPage.cshtml" />
     <Content Include="Views\Test\StudentDetail.cshtml" />
+    <Content Include="Views\Test\Sample.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
