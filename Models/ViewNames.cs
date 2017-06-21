@@ -11,5 +11,7 @@ namespace MVCTutorial.Models
         public string Name { get; set; }
         public Nullable<int> Branch { get; set; }
         public string BranchName { get; set; }
+
+        public bool Remember { get; set; }
     }
 }

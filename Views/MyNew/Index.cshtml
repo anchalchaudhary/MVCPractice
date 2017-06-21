@@ -1,0 +1,21 @@
+﻿@model MVCTutorial.Models.ViewNames
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="container" style="width:40%">
+
+    @Html.DropDownListFor(model => model.ID, ViewBag.BranchList as SelectList, "--select--", new { @class = "form-control" })
+
+    @Html.TextBoxFor(model => model.ID, new { @class = "form-control", @placeholder = "Your ID here" })
+
+    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Your Name here" })
+
+    <div class="checkbox">
+        @Html.CheckBoxFor(model => model.Remember)
+        Remember me
+    </div>
+    <input type="submit" value="Submit" class="btn btn-block btn-primary" />
+</div>
