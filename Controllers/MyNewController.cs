@@ -18,5 +18,26 @@ namespace MVCTutorial.Controllers
 
             return View();
         }
+        public ActionResult Save(ViewNames model)
+        {
+            MVCTutorialEntities db = new MVCTutorialEntities();
+            try
+            {
+                tblName objtblName = new tblName();
+                objtblName.Name = model.Name;
+                objtblName.Branch = model.ID;
+
+                db.tblNames.Add(objtblName);
+
+                db.SaveChanges();
+
+                int latestNameID = objtblName.ID;
+            }
+            catch(Exception ex)            
+            {
+
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -6,16 +6,17 @@
 
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <div class="container" style="width:40%">
+    @using (Html.BeginForm("Save", "MyNew", FormMethod.Post))
+    {
 
-    @Html.DropDownListFor(model => model.ID, ViewBag.BranchList as SelectList, "--select--", new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.ID, ViewBag.BranchList as SelectList, "--select--", new { @class = "form-control" })
 
-    @Html.TextBoxFor(model => model.ID, new { @class = "form-control", @placeholder = "Your ID here" })
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Your Name here" })
 
-    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Your Name here" })
-
-    <div class="checkbox">
-        @Html.CheckBoxFor(model => model.Remember)
-        Remember me
-    </div>
-    <input type="submit" value="Submit" class="btn btn-block btn-primary" />
+        @*<div class="checkbox">
+            @Html.CheckBoxFor(model => model.Remember)
+            Remember me
+        </div>*@
+        <input type="submit" value="Submit" class="btn btn-block btn-primary" />
+    }
 </div>
