@@ -25,38 +25,30 @@ namespace MVCTutorial.Controllers
         {
             List<tblBranch> list = db.tblBranches.ToList();
             ViewBag.BranchList = new SelectList(list, "BranchID", "Branch");
-            #region For Saving Data
-            tblName objtblName = new tblName();
-            objtblName.Name = model.Name;
-            objtblName.BranchID = model.BranchID;
 
-            db.tblNames.Add(objtblName);
+            if (ModelState.IsValid)
+            {
+                tblName objtblName = new tblName();
 
-            db.SaveChanges();
-            #endregion
-            int latestNameID = objtblName.ID;
+                #region For Saving Data
+                objtblName.Name = model.Name;
+                objtblName.BranchID = model.BranchID;
+
+                db.tblNames.Add(objtblName);
+
+                db.SaveChanges();
+                #endregion
+
+                int latestNameID = objtblName.ID;
+
+                tblCity objtblCity = new tblCity();
+                objtblCity.City = model.City;
+                objtblCity.ID = latestNameID;
+
+                db.tblCities.Add(objtblCity);
+                db.SaveChanges();
+            }
             return View(model);
         }
-        //public ActionResult Save(ViewNames model)
-        //{
-        //    MVCTutorialEntities db = new MVCTutorialEntities();
-        //    try
-        //    {
-        //        tblName objtblName = new tblName();
-        //        objtblName.Name = model.Name;
-        //        objtblName.BranchID = model.BranchID;
-
-        //        db.tblNames.Add(objtblName);
-
-        //        db.SaveChanges();
-
-        //        int latestNameID = objtblName.ID;
-        //    }
-        //    catch(Exception ex)            
-        //    {
-
-        //    }
-        //    return RedirectToAction("Index");
-        //}
     }
 }

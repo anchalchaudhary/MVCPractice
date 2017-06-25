@@ -4,13 +4,21 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MVCTutorialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MVCTutorialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblBranch">
           <Key>
             <PropertyRef Name="BranchID" />
           </Key>
           <Property Name="BranchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Branch" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="ID" Type="int" />
         </EntityType>
         <EntityType Name="tblNames">
           <Key>
@@ -20,6 +28,18 @@
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="BranchID" Type="int" />
         </EntityType>
+        <Association Name="FK__tblCity__ID__1DE57479">
+          <End Role="tblNames" Type="Self.tblNames" Multiplicity="0..1" />
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNames">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblCity">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__tblNames__Branch__1920BF5C">
           <End Role="tblBranch" Type="Self.tblBranch" Multiplicity="0..1" />
           <End Role="tblNames" Type="Self.tblNames" Multiplicity="*" />
@@ -34,14 +54,18 @@
         </Association>
         <EntityContainer Name="MVCTutorialModelStoreContainer">
           <EntitySet Name="tblBranch" EntityType="Self.tblBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblNames" EntityType="Self.tblNames" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblCity__ID__1DE57479" Association="Self.FK__tblCity__ID__1DE57479">
+            <End Role="tblNames" EntitySet="tblNames" />
+            <End Role="tblCity" EntitySet="tblCity" />
+          </AssociationSet>
           <AssociationSet Name="FK__tblNames__Branch__1920BF5C" Association="Self.FK__tblNames__Branch__1920BF5C">
             <End Role="tblBranch" EntitySet="tblBranch" />
             <End Role="tblNames" EntitySet="tblNames" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MVCTutorialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -61,6 +85,7 @@
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BranchID" Type="Int32" />
           <NavigationProperty Name="tblBranch" Relationship="Self.FK__tblNames__Branch__1920BF5C" FromRole="tblNames" ToRole="tblBranch" />
+          <NavigationProperty Name="tblCities" Relationship="MVCTutorialModel.FK__tblCity__ID__1DE57479" FromRole="tblName" ToRole="tblCity" />
         </EntityType>
         <Association Name="FK__tblNames__Branch__1920BF5C">
           <End Role="tblBranch" Type="Self.tblBranch" Multiplicity="0..1" />
@@ -81,7 +106,33 @@
             <End Role="tblBranch" EntitySet="tblBranches" />
             <End Role="tblNames" EntitySet="tblNames" />
           </AssociationSet>
+          <EntitySet Name="tblCities" EntityType="MVCTutorialModel.tblCity" />
+          <AssociationSet Name="FK__tblCity__ID__1DE57479" Association="MVCTutorialModel.FK__tblCity__ID__1DE57479">
+            <End Role="tblName" EntitySet="tblNames" />
+            <End Role="tblCity" EntitySet="tblCities" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" />
+          <NavigationProperty Name="tblName" Relationship="MVCTutorialModel.FK__tblCity__ID__1DE57479" FromRole="tblCity" ToRole="tblName" />
+        </EntityType>
+        <Association Name="FK__tblCity__ID__1DE57479">
+          <End Type="MVCTutorialModel.tblName" Role="tblName" Multiplicity="0..1" />
+          <End Type="MVCTutorialModel.tblCity" Role="tblCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblName">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblCity">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -102,6 +153,15 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCities">
+            <EntityTypeMapping TypeName="MVCTutorialModel.tblCity">
+              <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

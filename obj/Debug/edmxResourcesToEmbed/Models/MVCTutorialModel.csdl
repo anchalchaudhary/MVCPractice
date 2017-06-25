@@ -16,6 +16,7 @@
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="BranchID" Type="Int32" />
     <NavigationProperty Name="tblBranch" Relationship="Self.FK__tblNames__Branch__1920BF5C" FromRole="tblNames" ToRole="tblBranch" />
+    <NavigationProperty Name="tblCities" Relationship="MVCTutorialModel.FK__tblCity__ID__1DE57479" FromRole="tblName" ToRole="tblCity" />
   </EntityType>
   <Association Name="FK__tblNames__Branch__1920BF5C">
     <End Role="tblBranch" Type="Self.tblBranch" Multiplicity="0..1" />
@@ -36,5 +37,31 @@
       <End Role="tblBranch" EntitySet="tblBranches" />
       <End Role="tblNames" EntitySet="tblNames" />
     </AssociationSet>
+    <EntitySet Name="tblCities" EntityType="MVCTutorialModel.tblCity" />
+    <AssociationSet Name="FK__tblCity__ID__1DE57479" Association="MVCTutorialModel.FK__tblCity__ID__1DE57479">
+      <End Role="tblName" EntitySet="tblNames" />
+      <End Role="tblCity" EntitySet="tblCities" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="tblCity">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" />
+    <NavigationProperty Name="tblName" Relationship="MVCTutorialModel.FK__tblCity__ID__1DE57479" FromRole="tblCity" ToRole="tblName" />
+  </EntityType>
+  <Association Name="FK__tblCity__ID__1DE57479">
+    <End Type="MVCTutorialModel.tblName" Role="tblName" Multiplicity="0..1" />
+    <End Type="MVCTutorialModel.tblCity" Role="tblCity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblName">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblCity">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

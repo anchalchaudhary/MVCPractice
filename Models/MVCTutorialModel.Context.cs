@@ -27,5 +27,6 @@ namespace MVCTutorial.Models
     
         public virtual DbSet<tblBranch> tblBranches { get; set; }
         public virtual DbSet<tblName> tblNames { get; set; }
+        public virtual DbSet<tblCity> tblCities { get; set; }
     }
 }

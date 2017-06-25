@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="MVCTutorialModel.tblBranch" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="MVCTutorialModel.tblName" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="MVCTutorialModel.FK__tblNames__Branch__1920BF5C" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MVCTutorialModel.tblCity" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="MVCTutorialModel.FK__tblCity__ID__1DE57479" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

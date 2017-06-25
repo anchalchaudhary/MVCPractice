@@ -14,10 +14,18 @@ namespace MVCTutorial.Models
     
     public partial class tblName
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblName()
+        {
+            this.tblCities = new HashSet<tblCity>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
         public Nullable<int> BranchID { get; set; }
     
         public virtual tblBranch tblBranch { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCity> tblCities { get; set; }
     }
 }

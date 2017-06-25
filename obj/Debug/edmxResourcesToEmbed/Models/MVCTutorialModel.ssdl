@@ -7,6 +7,14 @@
     <Property Name="BranchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Branch" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="tblCity">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" />
+    <Property Name="ID" Type="int" />
+  </EntityType>
   <EntityType Name="tblNames">
     <Key>
       <PropertyRef Name="ID" />
@@ -15,6 +23,18 @@
     <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="BranchID" Type="int" />
   </EntityType>
+  <Association Name="FK__tblCity__ID__1DE57479">
+    <End Role="tblNames" Type="Self.tblNames" Multiplicity="0..1" />
+    <End Role="tblCity" Type="Self.tblCity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblNames">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblCity">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__tblNames__Branch__1920BF5C">
     <End Role="tblBranch" Type="Self.tblBranch" Multiplicity="0..1" />
     <End Role="tblNames" Type="Self.tblNames" Multiplicity="*" />
@@ -29,7 +49,12 @@
   </Association>
   <EntityContainer Name="MVCTutorialModelStoreContainer">
     <EntitySet Name="tblBranch" EntityType="Self.tblBranch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblNames" EntityType="Self.tblNames" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblCity__ID__1DE57479" Association="Self.FK__tblCity__ID__1DE57479">
+      <End Role="tblNames" EntitySet="tblNames" />
+      <End Role="tblCity" EntitySet="tblCity" />
+    </AssociationSet>
     <AssociationSet Name="FK__tblNames__Branch__1920BF5C" Association="Self.FK__tblNames__Branch__1920BF5C">
       <End Role="tblBranch" EntitySet="tblBranch" />
       <End Role="tblNames" EntitySet="tblNames" />

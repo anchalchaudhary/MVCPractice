@@ -209,6 +209,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Names.cs" />
+    <Compile Include="Models\tblCity.cs">
+      <DependentUpon>MVCTutorialModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewNames.cs" />
     <Compile Include="Models\MVCTutorialModel.Context.cs">
       <AutoGen>True</AutoGen>
