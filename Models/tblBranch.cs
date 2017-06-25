@@ -20,7 +20,7 @@ namespace MVCTutorial.Models
             this.tblNames = new HashSet<tblName>();
         }
     
-        public int ID { get; set; }
+        public int BranchID { get; set; }
         public string Branch { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

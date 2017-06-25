@@ -1,14 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MVCTutorialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblBranch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Branch" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="tblNames">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" />
-    <Property Name="Branch" Type="nvarchar(max)" />
+    <Property Name="BranchID" Type="int" />
   </EntityType>
+  <Association Name="FK__tblNames__Branch__1920BF5C">
+    <End Role="tblBranch" Type="Self.tblBranch" Multiplicity="0..1" />
+    <End Role="tblNames" Type="Self.tblNames" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBranch">
+        <PropertyRef Name="BranchID" />
+      </Principal>
+      <Dependent Role="tblNames">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="MVCTutorialModelStoreContainer">
+    <EntitySet Name="tblBranch" EntityType="Self.tblBranch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblNames" EntityType="Self.tblNames" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblNames__Branch__1920BF5C" Association="Self.FK__tblNames__Branch__1920BF5C">
+      <End Role="tblBranch" EntitySet="tblBranch" />
+      <End Role="tblNames" EntitySet="tblNames" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

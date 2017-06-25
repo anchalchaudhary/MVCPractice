@@ -5,32 +5,82 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="MVCTutorialModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBranch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Branch" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="tblNames">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="Branch" Type="nvarchar(max)" />
+          <Property Name="BranchID" Type="int" />
         </EntityType>
+        <Association Name="FK__tblNames__Branch__1920BF5C">
+          <End Role="tblBranch" Type="Self.tblBranch" Multiplicity="0..1" />
+          <End Role="tblNames" Type="Self.tblNames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBranch">
+              <PropertyRef Name="BranchID" />
+            </Principal>
+            <Dependent Role="tblNames">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MVCTutorialModelStoreContainer">
+          <EntitySet Name="tblBranch" EntityType="Self.tblBranch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblNames" EntityType="Self.tblNames" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblNames__Branch__1920BF5C" Association="Self.FK__tblNames__Branch__1920BF5C">
+            <End Role="tblBranch" EntitySet="tblBranch" />
+            <End Role="tblNames" EntitySet="tblNames" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MVCTutorialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblBranch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Branch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblNames" Relationship="Self.FK__tblNames__Branch__1920BF5C" FromRole="tblBranch" ToRole="tblNames" />
+        </EntityType>
         <EntityType Name="tblName">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Branch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchID" Type="Int32" />
+          <NavigationProperty Name="tblBranch" Relationship="Self.FK__tblNames__Branch__1920BF5C" FromRole="tblNames" ToRole="tblBranch" />
         </EntityType>
+        <Association Name="FK__tblNames__Branch__1920BF5C">
+          <End Role="tblBranch" Type="Self.tblBranch" Multiplicity="0..1" />
+          <End Role="tblNames" Type="Self.tblName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBranch">
+              <PropertyRef Name="BranchID" />
+            </Principal>
+            <Dependent Role="tblNames">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MVCTutorialEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblBranches" EntityType="Self.tblBranch" />
           <EntitySet Name="tblNames" EntityType="Self.tblName" />
+          <AssociationSet Name="FK__tblNames__Branch__1920BF5C" Association="Self.FK__tblNames__Branch__1920BF5C">
+            <End Role="tblBranch" EntitySet="tblBranches" />
+            <End Role="tblNames" EntitySet="tblNames" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -38,12 +88,20 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MVCTutorialModelStoreContainer" CdmEntityContainer="MVCTutorialEntities">
+          <EntitySetMapping Name="tblBranches">
+            <EntityTypeMapping TypeName="MVCTutorialModel.tblBranch">
+              <MappingFragment StoreEntitySet="tblBranch">
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblNames">
             <EntityTypeMapping TypeName="MVCTutorialModel.tblName">
               <MappingFragment StoreEntitySet="tblNames">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

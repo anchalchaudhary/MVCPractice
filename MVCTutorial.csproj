@@ -210,28 +210,28 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Names.cs" />
     <Compile Include="Models\ViewNames.cs" />
-    <Compile Include="Models\MVCTutoialModel.Context.cs">
+    <Compile Include="Models\MVCTutorialModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MVCTutoialModel.Context.tt</DependentUpon>
+      <DependentUpon>MVCTutorialModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MVCTutoialModel.cs">
+    <Compile Include="Models\MVCTutorialModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MVCTutoialModel.tt</DependentUpon>
+      <DependentUpon>MVCTutorialModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MVCTutoialModel.Designer.cs">
+    <Compile Include="Models\MVCTutorialModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MVCTutoialModel.edmx</DependentUpon>
+      <DependentUpon>MVCTutorialModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\tblBranch.cs">
-      <DependentUpon>MVCTutoialModel.tt</DependentUpon>
+      <DependentUpon>MVCTutorialModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblName.cs">
-      <DependentUpon>MVCTutoialModel.tt</DependentUpon>
+      <DependentUpon>MVCTutorialModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -241,27 +241,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\MVCTutoialModel.Context.tt">
+    <Content Include="Models\MVCTutorialModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MVCTutoialModel.edmx</DependentUpon>
-      <LastGenOutput>MVCTutoialModel.Context.cs</LastGenOutput>
+      <DependentUpon>MVCTutorialModel.edmx</DependentUpon>
+      <LastGenOutput>MVCTutorialModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\MVCTutoialModel.tt">
+    <Content Include="Models\MVCTutorialModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MVCTutoialModel.edmx</DependentUpon>
-      <LastGenOutput>MVCTutoialModel.cs</LastGenOutput>
+      <DependentUpon>MVCTutorialModel.edmx</DependentUpon>
+      <LastGenOutput>MVCTutorialModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\MVCTutoialModel.edmx">
+    <EntityDeploy Include="Models\MVCTutorialModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MVCTutoialModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>MVCTutorialModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\MVCTutoialModel.edmx.diagram">
-      <DependentUpon>MVCTutoialModel.edmx</DependentUpon>
+    <Content Include="Models\MVCTutorialModel.edmx.diagram">
+      <DependentUpon>MVCTutorialModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

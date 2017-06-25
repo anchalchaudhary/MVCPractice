@@ -1,14 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MVCTutorialModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblBranch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Branch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblNames" Relationship="Self.FK__tblNames__Branch__1920BF5C" FromRole="tblBranch" ToRole="tblNames" />
+  </EntityType>
   <EntityType Name="tblName">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Branch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BranchID" Type="Int32" />
+    <NavigationProperty Name="tblBranch" Relationship="Self.FK__tblNames__Branch__1920BF5C" FromRole="tblNames" ToRole="tblBranch" />
   </EntityType>
+  <Association Name="FK__tblNames__Branch__1920BF5C">
+    <End Role="tblBranch" Type="Self.tblBranch" Multiplicity="0..1" />
+    <End Role="tblNames" Type="Self.tblName" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBranch">
+        <PropertyRef Name="BranchID" />
+      </Principal>
+      <Dependent Role="tblNames">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="MVCTutorialEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblBranches" EntityType="Self.tblBranch" />
     <EntitySet Name="tblNames" EntityType="Self.tblName" />
+    <AssociationSet Name="FK__tblNames__Branch__1920BF5C" Association="Self.FK__tblNames__Branch__1920BF5C">
+      <End Role="tblBranch" EntitySet="tblBranches" />
+      <End Role="tblNames" EntitySet="tblNames" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

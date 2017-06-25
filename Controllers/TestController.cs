@@ -32,7 +32,7 @@ namespace MVCTutorial.Controllers
             ViewNames objVM = new ViewNames();
             objVM.ID = name.ID;
             objVM.Name = name.Name;
-            objVM.Branch = name.Branch;
+            objVM.BranchID = name.BranchID;
             objVM.BranchName = name.tblBranch.Branch;
 
             return View(objVM);

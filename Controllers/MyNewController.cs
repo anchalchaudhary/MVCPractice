@@ -10,11 +10,12 @@ namespace MVCTutorial.Controllers
     public class MyNewController : Controller
     {
         // GET: MyNew
+        MVCTutorialEntities db = new MVCTutorialEntities();
+
         public ActionResult Index()
         {
-            MVCTutorialEntities db = new MVCTutorialEntities();
             List<tblBranch> list = db.tblBranches.ToList();
-            ViewBag.BranchList = new SelectList(list,"ID","Branch");
+            ViewBag.BranchList = new SelectList(list, "BranchID", "Branch");
 
             return View();
         }
@@ -22,13 +23,18 @@ namespace MVCTutorial.Controllers
         [HttpPost]
         public ActionResult Index(ViewNames model)
         {
-            if (ModelState.IsValid == true)
-            {
-                
-            }
-            MVCTutorialEntities db = new MVCTutorialEntities();
             List<tblBranch> list = db.tblBranches.ToList();
-            ViewBag.BranchList = new SelectList(list, "ID", "Branch");
+            ViewBag.BranchList = new SelectList(list, "BranchID", "Branch");
+            #region For Saving Data
+            tblName objtblName = new tblName();
+            objtblName.Name = model.Name;
+            objtblName.BranchID = model.BranchID;
+
+            db.tblNames.Add(objtblName);
+
+            db.SaveChanges();
+            #endregion
+            int latestNameID = objtblName.ID;
             return View(model);
         }
         //public ActionResult Save(ViewNames model)
@@ -38,7 +44,7 @@ namespace MVCTutorial.Controllers
         //    {
         //        tblName objtblName = new tblName();
         //        objtblName.Name = model.Name;
-        //        objtblName.Branch = model.ID;
+        //        objtblName.BranchID = model.BranchID;
 
         //        db.tblNames.Add(objtblName);
 

@@ -25,6 +25,7 @@ namespace MVCTutorial.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<tblBranch> tblBranches { get; set; }
         public virtual DbSet<tblName> tblNames { get; set; }
     }
 }

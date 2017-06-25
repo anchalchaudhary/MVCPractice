@@ -16,7 +16,7 @@ namespace MVCTutorial.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Branch { get; set; }
+        public Nullable<int> BranchID { get; set; }
     
         public virtual tblBranch tblBranch { get; set; }
     }

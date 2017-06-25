@@ -4,8 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5affb171cb9946a1aa3be7ff4f4fab42" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="MVCTutorialModel.tblName" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="3fe567d92cef4d89ac0341beea777b1a" Name="Diagram1">
+        <EntityTypeShape EntityType="MVCTutorialModel.tblBranch" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCTutorialModel.tblName" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="MVCTutorialModel.FK__tblNames__Branch__1920BF5C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
