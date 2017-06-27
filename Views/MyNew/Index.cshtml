@@ -4,37 +4,46 @@
     Layout = null;
 }
 
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
-<style>
-    .error {
-        color: red;
-    }
-</style>
-<div class="container" style="width:40%">
-    @*@using (Html.BeginForm("Index", "MyNew", FormMethod.Post))*@
-    @*{*@
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
-    <form id="form1">
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
 
-        @Html.DropDownListFor(model => model.BranchID, ViewBag.BranchList as SelectList, "--Select--", new { @class = "form-control" })
-        @*@Html.ValidationMessageFor(model => model.BranchID, "", new { @class = "error" })*@
 
-        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Your Name here" })
-        @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "error" })*@
+<div class="container" style="width:40% ; margin-top:2%">
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#RegisterModal">Register here</a>
+    <div class="modal fade" id="RegisterModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dissmiss="modal">&times;</a>
+                    <h4 class="modal-title">REGISTER</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form1">
 
-        @Html.TextBoxFor(model => model.City, new { @class = "form-control", @placeholder = "Your City here" })
-        @*@Html.ValidationMessageFor(model => model.City, "", new { @class = "error" })*@
+                        @Html.DropDownListFor(model => model.BranchID, ViewBag.BranchList as SelectList, "--Select--", new { @class = "form-control" })
+                        @*@Html.ValidationMessageFor(model => model.BranchID, "", new { @class = "error" })*@
 
-        <input type="reset" value="Submit" class="btn btn-block btn-primary" id="btnSubmit" />
-    </form>
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Your Name here" })
+                        @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "error" })*@
 
-    @*}*@
+                        @Html.TextBoxFor(model => model.City, new { @class = "form-control", @placeholder = "Your City here" })
+                        @*@Html.ValidationMessageFor(model => model.City, "", new { @class = "error" })*@
 
-    <div id="divLoader" style="text-align:center; display:none">
-        <img src="~/Content/loading.gif" width="100" />
+                    </form>
+                    <div id="divLoader" style="text-align:center; display:none">
+                        <img src="~/Content/loading.gif" width="100" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dissmiss="modal">Cancel</a>
+                    <input type="reset" value="Submit" class="btn btn-success" id="btnSubmit" />
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
 <script>
 
@@ -42,18 +51,21 @@
         $("#btnSubmit").click(function () {
             // debugger
             $("#divLoader").show();
-            var data = $("#form1").serialize();                        
+            var data = $("#form1").serialize();
             $.ajax({
                 type: "POST",
                 url: "/MyNew/Index",
                 data: data,
                 success: function (response) {
                     $("#divLoader").hide();
-                    alert("Submitted");
-                }
+                    $("#RegisterModal").modal("hide");
+                    //alert("Submitted");
+                }           
             })
         })
     })
 </script>
+
+
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
