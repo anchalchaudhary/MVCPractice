@@ -17,6 +17,7 @@
     <Property Name="BranchID" Type="Int32" />
     <NavigationProperty Name="tblBranch" Relationship="Self.FK__tblNames__Branch__1920BF5C" FromRole="tblNames" ToRole="tblBranch" />
     <NavigationProperty Name="tblCities" Relationship="MVCTutorialModel.FK__tblCity__ID__1DE57479" FromRole="tblName" ToRole="tblCity" />
+    <Property Name="IsDeleted" Type="Int32" />
   </EntityType>
   <Association Name="FK__tblNames__Branch__1920BF5C">
     <End Role="tblBranch" Type="Self.tblBranch" Multiplicity="0..1" />

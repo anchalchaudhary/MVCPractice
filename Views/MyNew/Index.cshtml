@@ -43,6 +43,47 @@
             </div>
         </div>
     </div>
+
+    <table class="table table-condensed">
+        <tr>
+            <th>Name</th>
+            <th>Branch</th>
+            <th></th>
+        </tr>
+        <tbody>
+            @if (ViewBag.PresentList != null)
+            {
+                foreach (var item in ViewBag.PresentList)
+                {
+                    <tr id="row_@item.ID">
+                        <td>@item.Name</td>
+                        <td>@item.BranchName</td>
+                        <td><a class="btn btn-danger" href="#" onclick="ConfirmDelete(@item.ID)"><i class="glyphicon glyphicon-trash"></i></a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <input type="hidden" id="hiddenNameID" />
+
+    <div class="modal fade" id="DeleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dissmiss="modal">&times;</a>
+                    <h4 class="modal-title">Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>Are you sure?</h3>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dissmiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-success" onclick="DeleteName()">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -60,10 +101,28 @@
                     $("#divLoader").hide();
                     $("#RegisterModal").modal("hide");
                     //alert("Submitted");
-                }           
+                }
             })
         })
     })
+
+    var ConfirmDelete = function (NameID) {
+        $("#hiddenNameID").val(NameID);
+        $("#DeleteModal").modal('show');
+    }
+
+    var DeleteName = function () {
+        var data = $("#hiddenNameID").val();
+        $.ajax({
+            type: "POST",
+            url: "/MyNew/Delete",
+            data: { ID: data },
+            success: function (result) {
+                $("#DeleteModal").modal("hide");
+                $("#row_" + data).remove();
+            }
+        })
+    }
 </script>
 
 

@@ -23,6 +23,7 @@ namespace MVCTutorial.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public Nullable<int> BranchID { get; set; }
+        public Nullable<int> IsDeleted { get; set; }
     
         public virtual tblBranch tblBranch { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

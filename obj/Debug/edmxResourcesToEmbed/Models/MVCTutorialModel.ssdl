@@ -22,6 +22,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" />
     <Property Name="BranchID" Type="int" />
+    <Property Name="IsDeleted" Type="int" />
   </EntityType>
   <Association Name="FK__tblCity__ID__1DE57479">
     <End Role="tblNames" Type="Self.tblNames" Multiplicity="0..1" />

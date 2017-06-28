@@ -12,6 +12,7 @@
     <EntitySetMapping Name="tblNames">
       <EntityTypeMapping TypeName="MVCTutorialModel.tblName">
         <MappingFragment StoreEntitySet="tblNames">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="BranchID" ColumnName="BranchID" />
