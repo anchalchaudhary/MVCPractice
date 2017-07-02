@@ -56,15 +56,23 @@ namespace MVCTutorial.Controllers
         public JsonResult Delete(int ID)
         {
             bool result = false;
-            tblName objtblName = db.tblNames.SingleOrDefault(x=>x.IsDeleted==0 &&  x.ID==ID );
-            if(objtblName!=null)
+            tblName objtblName = db.tblNames.SingleOrDefault(x => x.IsDeleted == 0 && x.ID == ID);
+            if (objtblName != null)
             {
                 objtblName.IsDeleted = 1;
                 db.SaveChanges();
                 result = true;
-            }
 
+                //tblCity objtblCity = db.tblCities.Where(x => x.ID == ID).SingleOrDefault();
+                //db.tblCities.Remove(objtblCity);
+
+            }
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ShowPartial()
+        {
+
+            return PartialView("ShowPartial");
         }
     }
 }

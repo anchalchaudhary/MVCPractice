@@ -11,6 +11,12 @@
 
 
 <div class="container" style="width:40% ; margin-top:2%">
+    @Html.Partial("/Views/MyNew/ShowPartial.cshtml")
+
+    @{Html.RenderPartial("ShowPartial", Model);}
+
+    @{Html.RenderAction("ShowPartial");}
+
     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#RegisterModal">Register here</a>
     <div class="modal fade" id="RegisterModal">
         <div class="modal-dialog">
@@ -55,11 +61,11 @@
             {
                 foreach (var item in ViewBag.PresentList)
                 {
-                    <tr id="row_@item.ID">
-                        <td>@item.Name</td>
-                        <td>@item.BranchName</td>
-                        <td><a class="btn btn-danger" href="#" onclick="ConfirmDelete(@item.ID)"><i class="glyphicon glyphicon-trash"></i></a></td>
-                    </tr>
+            <tr id="row_@item.ID">
+                <td>@item.Name</td>
+                <td>@item.BranchName</td>
+                <td><a class="btn btn-danger" href="#" onclick="ConfirmDelete(@item.ID)"><i class="glyphicon glyphicon-trash"></i></a></td>
+            </tr>
                 }
             }
         </tbody>
