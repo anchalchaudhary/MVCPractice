@@ -143,16 +143,22 @@
         })
     }
 
-    var ShowName = function(NameID){
-        $.ajax({
-            type: "POST",
-            url: "/MyNew/Show",
-            data: {ID: NameID},
-            success: function(response){
-                $("#ShowDetailsModalBody").html(response);
-                $("#ShowDetailsModal").modal("show");
-            }
+    var ShowName = function (NameID) {
+
+        var url = "/MyNew/Show?ID=" + NameID;
+        $("#ShowDetailsModalBody").load(url, function () {
+            $("#ShowDetailsModal").modal("show");
+
         })
+        //$.ajax({
+        //    type: "POST",
+        //    url: "/MyNew/Show",
+        //    data: {ID: NameID},
+        //    success: function(response){
+        //        $("#ShowDetailsModalBody").html(response);
+        //        $("#ShowDetailsModal").modal("show");
+        //    }
+        //})
     }
 </script>
 
