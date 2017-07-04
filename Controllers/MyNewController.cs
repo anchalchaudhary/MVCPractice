@@ -69,8 +69,10 @@ namespace MVCTutorial.Controllers
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ShowPartial()
+        public ActionResult Show(int ID)
         {
+            List<ViewNames> requiredPersonDetails = db.tblNames.Where(x => x.IsDeleted == 0 && x.ID==ID).Select(x => new ViewNames { Name = x.Name, BranchID = x.BranchID, BranchName = x.tblBranch.Branch, ID = x.ID }).ToList();
+            ViewBag.RequiredPersonDetails = requiredPersonDetails;
 
             return PartialView("ShowPartial");
         }

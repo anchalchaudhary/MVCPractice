@@ -11,11 +11,6 @@
 
 
 <div class="container" style="width:40% ; margin-top:2%">
-    @Html.Partial("/Views/MyNew/ShowPartial.cshtml")
-
-    @{Html.RenderPartial("ShowPartial", Model);}
-
-    @{Html.RenderAction("ShowPartial");}
 
     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#RegisterModal">Register here</a>
     <div class="modal fade" id="RegisterModal">
@@ -61,11 +56,12 @@
             {
                 foreach (var item in ViewBag.PresentList)
                 {
-            <tr id="row_@item.ID">
-                <td>@item.Name</td>
-                <td>@item.BranchName</td>
-                <td><a class="btn btn-danger" href="#" onclick="ConfirmDelete(@item.ID)"><i class="glyphicon glyphicon-trash"></i></a></td>
-            </tr>
+                    <tr id="row_@item.ID">
+                        <td>@item.Name</td>
+                        <td>@item.BranchName</td>
+                        <td><a class="btn btn-danger" href="#" onclick="ConfirmDelete(@item.ID)"><i class="glyphicon glyphicon-trash"></i></a></td>
+                        <td><a class="btn btn-danger" href="#" onclick="ShowName(@item.ID)"><i class="glyphicon glyphicon-open"></i></a></td>
+                    </tr>
                 }
             }
         </tbody>
@@ -77,15 +73,32 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <a href="#" class="close" data-dissmiss="modal">&times;</a>
+                    <a href="#" class="close" onclick=$("#DeleteModal").modal("hide")>&times;</a>
                     <h4 class="modal-title">Confirm Delete</h4>
                 </div>
                 <div class="modal-body">
                     <h3>Are you sure?</h3>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-default" data-dissmiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-default" onclick=$("#DeleteModal").modal("hide")>Cancel</a>
                     <a href="#" class="btn btn-success" onclick="DeleteName()">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ShowDetailsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Person Details</h4>
+                </div>
+                <div class="modal-body" id="ShowDetailsModalBody">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -126,6 +139,18 @@
             success: function (result) {
                 $("#DeleteModal").modal("hide");
                 $("#row_" + data).remove();
+            }
+        })
+    }
+
+    var ShowName = function(NameID){
+        $.ajax({
+            type: "POST",
+            url: "/MyNew/Show",
+            data: {ID: NameID},
+            success: function(response){
+                $("#ShowDetailsModalBody").html(response);
+                $("#ShowDetailsModal").modal("show");
             }
         })
     }

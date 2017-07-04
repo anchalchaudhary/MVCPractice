@@ -1,4 +1,21 @@
-﻿
-
-<h2>Show Partial</h2>
+﻿<table class="table table-condensed">
+    @if(ViewBag.RequiredPersonDetails != null)
+    {
+        foreach(var item in ViewBag.RequiredPersonDetails)
+        {
+            <tr>
+                <td><b>ID</b></td>
+                <td>@item.ID</td>
+            </tr>
+            <tr>
+                <td><b>NAME</b></td>
+                <td>@item.Name</td>
+            </tr>
+            <tr>
+                <td><b>BRANCH</b></td>
+                <td>@item.BranchName</td>
+            </tr>
+        }
+    }
+</table>
 
